@@ -6,12 +6,12 @@ using std::cin;
 using std::cout;
 using std::string;
 
-unsigned shift_num(unsigned num, unsigned alphabet_size, unsigned delta)
+unsigned shift_num(unsigned num, unsigned alphabet_size, int delta)
 {
     return (num + delta) % alphabet_size;
 }
 
-std::string ceasar(std::string text, std::string alphabet, unsigned delta)
+std::string ceasar(std::string text, std::string alphabet, int delta)
 {
     int pos;
     for (auto &c : text)
@@ -22,16 +22,23 @@ std::string ceasar(std::string text, std::string alphabet, unsigned delta)
     return text;
 }
 
+std::string ceasar_encode(std::string text, std::string alphabet, int delta = 3){
+  return ceasar(text,alphabet,delta);
+}
+
+std::string ceasar_decode(std::string text, std::string alphabet, int delta = 3){
+  return ceasar(text,alphabet,-delta);
+}
+
 int main(int argc, char const *argv[])
 {
     std::string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     unsigned delta = 3;
 
     std::string text;
-    // text =  = "Hello World123Hello 123 Hell ABC sdq";
     std::cin>>text;
     std::cout << text << "\n";
-    std::cout << ceasar(text, alphabet, delta) << "\n";
+    std::cout << ceasar_encode(text, alphabet) << "\n";
 
     return 0;
 }
